@@ -29,9 +29,22 @@ while True:
             pygame.quit()
             sys.exit()
 
+    keys = pygame.key.get_pressed()
+    
+    if keys[K_a]:
+        direction = 1
+    elif keys[K_d]:
+        direction = -1
+    elif keys[K_w]:
+        direction = 2
+    elif keys[K_s]:
+        direction = -2
+    else:
+        direction = 0
+
     main_clock.tick(60)
 
-    player.update()
+    player.update(direction)
     all_group.clear(screen, background)
     all_group.draw(screen)
     pygame.display.update()
