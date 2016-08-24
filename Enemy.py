@@ -11,3 +11,6 @@ class Enemy(pygame.sprite.Sprite):
         self.rect.y += 5
         if self.rect.y >= 480:
             self.rect.y = 0
+
+    def collision(self):
+        self.rect.y = 0

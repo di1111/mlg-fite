@@ -17,6 +17,9 @@ font = pygame.font.SysFont(None, 36)
 player = Player()
 enemy = Enemy(500, 100)
 
+enemy_group = pygame.sprite.Group()
+enemp_group.add(enemy)
+
 all_group = pygame.sprite.Group()
 all_group.add(player)
 all_group.add(enemy)
@@ -47,6 +50,12 @@ while True:
         direction = 0
 
     main_clock.tick(60)
+
+    collide_list = pygame.sprite.spritecollide(player, enemy_group, False, collided = None)
+    if len(collide_list) > 0:
+        player.subtract_lives()
+        for enemy in collide_list:
+            enemy.collision()
 
     player.update(direction)
     enemy.update()
