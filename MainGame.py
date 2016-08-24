@@ -2,6 +2,7 @@ import pygame
 import sys
 from pygame.locals import *
 from Player import Player
+from Enemy import Enemy
 
 pygame.init()
 
@@ -14,9 +15,12 @@ pygame.display.set_caption('Game Base')
 font = pygame.font.SysFont(None, 36)
 
 player = Player()
+enemy = Enemy(500, 100)
 
 all_group = pygame.sprite.Group()
 all_group.add(player)
+all_group.add(enemy)
+
 
 main_clock = pygame.time.Clock()
 
@@ -45,6 +49,7 @@ while True:
     main_clock.tick(60)
 
     player.update(direction)
+    enemy.update()
     all_group.clear(screen, background)
     all_group.draw(screen)
     pygame.display.update()
